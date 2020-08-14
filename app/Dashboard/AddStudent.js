@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   ScrollView,
+  AsyncStorage,
 } from 'react-native';
 import DefaultTextInput from '../Components/DefaultTextInput';
 import DefaultButton from '../Components/DefaultButton';
@@ -24,8 +25,19 @@ function AddStudent(props) {
           BirthDate: '',
           Percentage: '',
         }}
-        onSubmit={(values, actions) => {
-          console.warn(values);
+        onSubmit={async (values, actions) => {
+          let studentString = await AsyncStorage.getItem('students');
+
+          let Students = studentString ? JSON.parse(studentString) : [];
+
+          Students.push(values);
+          console.log(Students);
+          try {
+            await AsyncStorage.setItem('students', JSON.stringify(Students));
+          } catch (e) {
+            console.log(e);
+          }
+
           actions.resetForm();
         }}
         validationSchema={yup.object().shape({
