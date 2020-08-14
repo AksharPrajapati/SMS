@@ -9,7 +9,7 @@ function DefaultTextInput(props) {
         name={props.name}
         secureTextEntry={props.secureTextEntry}
         placeholder={props.placeholder}
-        onChangeText={props.onTextchange}
+        onChangeText={props.onChangeText}
         multiline={props.multiline}
         numberOfLines={props.numberOfLines}
         value={props.value}

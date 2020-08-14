@@ -6,7 +6,10 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   ScrollView,
+  TextInput,
 } from 'react-native';
+import {Formik} from 'formik';
+import * as yup from 'yup';
 import DefaultTextInput from '../Components/DefaultTextInput';
 import DefaultButton from '../Components/DefaultButton';
 
@@ -18,46 +21,71 @@ function Register(props) {
       <View style={styles.container}>
         <Text style={styles.textHeader}>Sign Up</Text>
 
-        <View style={{marginTop: -10}}>
-          <DefaultTextInput
-            placeholder="First Name"
-            // onTextchange={(val) => this.setMobileNumber(val)}
-          />
-          <DefaultTextInput
-            placeholder="Last Name"
-            //   onTextchange={(val) => this.setName(val)}
-          />
+        <Formik
+          initialValues={{
+            FirstName: '',
+            LastName: '',
+            Email: '',
+            Password: '',
+          }}
+          onSubmit={(values, actions) => {
+            console.warn(values);
+            actions.resetForm();
+          }}
+          validationSchema={yup.object().shape({
+            FirstName: yup.string().required('this field must required...'),
+            LastName: yup.string(),
+            Email: yup.string().required('this field must required...'),
+            Password: yup.string().required('this field must required...'),
+          })}>
+          {({
+            handleChange,
+            values,
+            handleSubmit,
+            setFieldValue,
+            errors,
+            touched,
+            setValues,
+          }) => (
+            <View style={{marginTop: -10}}>
+              <DefaultTextInput
+                placeholder="First Name"
+                onChangeText={handleChange('FirstName')}
+                value={values.FirstName}
+              />
+              <DefaultTextInput
+                placeholder="Last Name"
+                onChangeText={handleChange('LastName')}
+                value={values.LastName}
+              />
 
-          <DefaultTextInput
-            placeholder="Email"
-            //   onTextchange={(val) => this.setPassword(val)}
-          />
-          <DefaultTextInput
-            placeholder="Password"
-            secureTextEntry={true}
-            //   onTextchange={(val) => this.setPassword(val)}
-          />
-          {/* <DefaultTextInput
-            placeholder="Confirm Password"
-            secureTextEntry={true}
-            //   onTextchange={(val) => this.setPassword(val)}
-          /> */}
-          <View style={styles.buttonConainer}>
-            <DefaultButton
-              title="Sign Up"
-              // onClick={() => props.navigation.navigate("Confirm Email")}
-            />
-          </View>
+              <DefaultTextInput
+                placeholder="Email"
+                onChangeText={handleChange('Email')}
+                value={values.Email}
+              />
+              <DefaultTextInput
+                placeholder="Password"
+                onChangeText={handleChange('Password')}
+                value={values.Password}
+                secureTextEntry={true}
+              />
 
-          <Text style={{textAlign: 'center', marginBottom: 70}}>
-            Have an account?
-            <TouchableWithoutFeedback
-            // onPress={() => props.navigation.navigate("Login")}
-            >
-              <Text style={{color: '#1A76FC'}}> Sign In</Text>
-            </TouchableWithoutFeedback>
-          </Text>
-        </View>
+              <View style={styles.buttonConainer}>
+                <DefaultButton title="Sign Up" onClick={() => handleSubmit()} />
+              </View>
+
+              <Text style={{textAlign: 'center', marginBottom: 70}}>
+                Have an account?
+                <TouchableWithoutFeedback
+                // onPress={() => props.navigation.navigate("Login")}
+                >
+                  <Text style={{color: '#1A76FC'}}> Sign In</Text>
+                </TouchableWithoutFeedback>
+              </Text>
+            </View>
+          )}
+        </Formik>
       </View>
     </ScrollView>
   );

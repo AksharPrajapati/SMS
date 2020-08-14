@@ -9,27 +9,76 @@ import {
 } from 'react-native';
 import DefaultTextInput from '../Components/DefaultTextInput';
 import DefaultButton from '../Components/DefaultButton';
+import {Formik} from 'formik';
+import * as yup from 'yup';
 
 function AddStudent(props) {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{backgroundColor: '#FFFFFF'}}>
-      <View style={styles.container}>
-        <Text style={styles.textHeader}>Insert Student</Text>
+      <Formik
+        initialValues={{
+          FirstName: '',
+          LastName: '',
+          BirthDate: '',
+          Percentage: '',
+        }}
+        onSubmit={(values, actions) => {
+          console.warn(values);
+          actions.resetForm();
+        }}
+        validationSchema={yup.object().shape({
+          FirstName: yup.string().required('this field must required...'),
+          LastName: yup.string(),
+          BirthDate: yup.string().required('this field must required...'),
+          Percentage: yup.string().required('this field must required...'),
+        })}>
+        {({
+          handleChange,
+          values,
+          handleSubmit,
+          setFieldValue,
+          errors,
+          touched,
+          setValues,
+        }) => (
+          <View style={styles.container}>
+            <Text style={styles.textHeader}>Insert Student</Text>
 
-        <View style={{marginTop: -10}}>
-          <DefaultTextInput placeholder="First Name" />
-          <DefaultTextInput placeholder="Last Name" />
+            <View style={{marginTop: -10}}>
+              <DefaultTextInput
+                placeholder="First Name"
+                onChangeText={handleChange('FirstName')}
+                value={values.FirstName}
+              />
+              <DefaultTextInput
+                placeholder="Last Name"
+                onChangeText={handleChange('LastName')}
+                value={values.LastName}
+              />
 
-          <DefaultTextInput placeholder="Birthdate" />
-          <DefaultTextInput placeholder="Percentage" />
+              <DefaultTextInput
+                placeholder="Birthdate"
+                onChangeText={handleChange('BirthDate')}
+                value={values.BirthDate}
+              />
+              <DefaultTextInput
+                placeholder="Percentage"
+                onChangeText={handleChange('Percentage')}
+                value={values.Percentage}
+              />
 
-          <View style={styles.buttonConainer}>
-            <DefaultButton title="Add Student" />
+              <View style={styles.buttonConainer}>
+                <DefaultButton
+                  title="Add Student"
+                  onClick={() => handleSubmit()}
+                />
+              </View>
+            </View>
           </View>
-        </View>
-      </View>
+        )}
+      </Formik>
     </ScrollView>
   );
 }

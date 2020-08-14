@@ -15,8 +15,8 @@ export default function Entrypoint() {
     <View>
       {/* <MyStack /> */}
       {/* <Register /> */}
-      {/* <AddStudent /> */}
-      <StudentList />
+      <AddStudent />
+      {/* <StudentList /> */}
       {/* <Login /> */}
     </View>
   );
