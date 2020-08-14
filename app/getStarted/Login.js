@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Text,
+  AsyncStorage,
 } from 'react-native';
 import DefaultTextInput from '../Components/DefaultTextInput';
 import DefaultButton from '../Components/DefaultButton';
@@ -23,8 +24,21 @@ export default function Login(props) {
           Email: '',
           Password: '',
         }}
-        onSubmit={(values, actions) => {
-          console.warn(values);
+        onSubmit={async (values, actions) => {
+          let teachersString = await AsyncStorage.getItem('teachers');
+
+          let teachers = teachersString ? JSON.parse(teachersString) : [];
+
+          let found = teachers.find(
+            (teacher) =>
+              teacher.Email === values.Email &&
+              teacher.Password === values.Password,
+          );
+          if (found) {
+            alert('Successfully Login');
+          } else {
+            alert('Login Failed..');
+          }
           actions.resetForm();
         }}
         validationSchema={yup.object().shape({

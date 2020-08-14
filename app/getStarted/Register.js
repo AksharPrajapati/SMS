@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  AsyncStorage,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -28,8 +29,19 @@ function Register(props) {
             Email: '',
             Password: '',
           }}
-          onSubmit={(values, actions) => {
-            console.warn(values);
+          onSubmit={async (values, actions) => {
+            let teachersString = await AsyncStorage.getItem('teachers');
+
+            let teachers = teachersString ? JSON.parse(teachersString) : [];
+
+            teachers.push(values);
+            console.log(teachers);
+            try {
+              await AsyncStorage.setItem('teachers', JSON.stringify(teachers));
+            } catch (e) {
+              console.log(e);
+            }
+
             actions.resetForm();
           }}
           validationSchema={yup.object().shape({
