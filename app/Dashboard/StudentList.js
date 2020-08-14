@@ -26,35 +26,22 @@ export default function StudentList(props) {
           <Text>Add</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        <View>
-          <View style={styles.listContainer}>
-            <View style={styles.listItem}>
-              <View
-                style={{width: 80, height: 80, backgroundColor: 'gray'}}></View>
-              <TouchableOpacity
-              // onPress={() => {
-              //   props.navigation.navigate('');
-              // }}
-              >
-                <Text
-                  style={{
-                    marginLeft: 10,
-                    marginTop: 20,
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                    width: 110,
-                  }}>
-                  Student 1
-                </Text>
-              </TouchableOpacity>
 
-              <View style={{marginTop: 22, marginRight: 10}}></View>
-            </View>
-          </View>
-          {/* ))} */}
+      <View style={styles.listContainer}>
+        <View style={styles.listItem}>
+          <Text>Student 1</Text>
         </View>
-      </ScrollView>
+      </View>
+      <View style={styles.listContainer}>
+        <View style={styles.listItem}>
+          <Text>Student 2</Text>
+        </View>
+      </View>
+      <View style={styles.listContainer}>
+        <View style={styles.listItem}>
+          <Text>Student 3</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -62,10 +49,7 @@ export default function StudentList(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
-    // alignItems: "center",
-    //marginTop: Constants.statusBarHeight,
-    marginTop: 0,
+    backgroundColor: '#FFFFFF',
   },
   textHeader: {
     fontSize: 22,
@@ -74,15 +58,11 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   listItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
     // position:"absolute"
   },
-  // btn: {
-  //   marginLeft: 9,
-  //   bottom:40,top:5
 
-  // },
   listContainer: {
     margin: 20,
     marginVertical: 5,
