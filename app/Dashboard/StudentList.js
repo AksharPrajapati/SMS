@@ -36,7 +36,8 @@ export default function StudentList(props) {
         (data) =>
           `${data.FirstName} ${data.LastName}`
             .toLowerCase()
-            .indexOf(text.trim().toLowerCase()) >= 0,
+            .indexOf(text.trim().toLowerCase()) >= 0 ||
+          data.BirthDate.toLowerCase().indexOf(text.trim().toLowerCase()) >= 0,
       );
       setListData(filterdData);
     } else {
@@ -53,7 +54,7 @@ export default function StudentList(props) {
             backgroundColor: '#FFFFFF',
           }}>
           <DefaultTextInput
-            placeholder="serch student"
+            placeholder="Student name or Birthdate"
             onChangeText={(text) => onChangeText(text)}
             //value={values.FirstName}
           />
@@ -65,10 +66,15 @@ export default function StudentList(props) {
         </View>
         <View style={{marginTop: 10}}>
           {listData
-            ? listData.map(({FirstName, Percentage}) => (
+            ? listData.map(({FirstName, LastName, BirthDate, Percentage}) => (
                 <View style={styles.listContainer}>
                   <View style={styles.listItem}>
-                    <Text style={{textAlign: 'center'}}>{FirstName}</Text>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                      }}>{`${FirstName} ${LastName}`}</Text>
+                    <Text style={{textAlign: 'center'}}>{BirthDate}</Text>
+
                     <Text style={{textAlign: 'center'}}>{Percentage}%</Text>
                   </View>
                 </View>
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
   },
   listItem: {
     // position: 'absolute',
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 10,
   },
 

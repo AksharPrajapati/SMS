@@ -13,10 +13,10 @@ import StudentList from './Dashboard/StudentList';
 export default function Entrypoint() {
   return (
     <View>
-      {/* <MyStack /> */}
+      <MyStack />
       {/* <Register /> */}
       {/* <AddStudent /> */}
-      <StudentList />
+      {/* <StudentList /> */}
       {/* <Login /> */}
     </View>
   );
