@@ -26,20 +26,24 @@ export default function StudentList(props) {
           <Text>Add</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.listContainer}>
-        <View style={styles.listItem}>
-          <Text>Student 1</Text>
+      <View style={{marginTop: 100}}>
+        <View style={styles.listContainer}>
+          <View style={styles.listItem}>
+            <Text style={{textAlign: 'center'}}>Name : Student 1</Text>
+            <Text style={{textAlign: 'center'}}>Percentage : 87%</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.listContainer}>
-        <View style={styles.listItem}>
-          <Text>Student 2</Text>
+        <View style={styles.listContainer}>
+          <View style={styles.listItem}>
+            <Text style={{textAlign: 'center'}}>Name : Student 2</Text>
+            <Text style={{textAlign: 'center'}}>Percentage : 82%</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.listContainer}>
-        <View style={styles.listItem}>
-          <Text>Student 3</Text>
+        <View style={styles.listContainer}>
+          <View style={styles.listItem}>
+            <Text style={{textAlign: 'center'}}>Name : Student 3</Text>
+            <Text style={{textAlign: 'center'}}>Percentage : 78%</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -58,22 +62,19 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   listItem: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // position:"absolute"
+    // position: 'absolute',
+    marginTop: 20,
+    marginLeft: 10,
   },
 
   listContainer: {
     margin: 20,
     marginVertical: 5,
-    borderColor: 'black',
     shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowRadius: 6,
-    shadowOffset: {width: 0, height: 2},
     elevation: 5,
     backgroundColor: 'white',
     padding: 10,
     borderRadius: 20,
+    height: 100,
   },
 });
