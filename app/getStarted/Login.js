@@ -36,6 +36,7 @@ export default function Login(props) {
           );
           if (found) {
             alert('Successfully Login');
+            props.navigation.navigate('StudentList');
           } else {
             alert('Login Failed..');
           }
@@ -90,8 +91,7 @@ export default function Login(props) {
               style={{textAlign: 'center', marginTop: 30, color: '#707070'}}>
               Don't have an account?
               <TouchableWithoutFeedback
-              //  onPress={() => props.navigation.navigate('Register')}
-              >
+                onPress={() => props.navigation.navigate('Register')}>
                 <Text style={{color: '#1A76FC'}}> Sign Up</Text>
               </TouchableWithoutFeedback>
             </Text>

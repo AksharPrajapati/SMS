@@ -59,7 +59,7 @@ export default function StudentList(props) {
             //value={values.FirstName}
           />
           <TouchableOpacity
-            //onPress={() => props.navigation.navigate('Add Student')}
+            onPress={() => props.navigation.navigate('AddStudent')}
             style={{marginLeft: 9, marginTop: 28}}>
             <Text>Add</Text>
           </TouchableOpacity>

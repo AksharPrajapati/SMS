@@ -38,6 +38,7 @@ function Register(props) {
             console.log(teachers);
             try {
               await AsyncStorage.setItem('teachers', JSON.stringify(teachers));
+              props.navigation.navigate('Login');
             } catch (e) {
               console.log(e);
             }
@@ -90,8 +91,7 @@ function Register(props) {
               <Text style={{textAlign: 'center', marginBottom: 70}}>
                 Have an account?
                 <TouchableWithoutFeedback
-                // onPress={() => props.navigation.navigate("Login")}
-                >
+                  onPress={() => props.navigation.navigate('Login')}>
                   <Text style={{color: '#1A76FC'}}> Sign In</Text>
                 </TouchableWithoutFeedback>
               </Text>

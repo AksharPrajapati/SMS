@@ -34,6 +34,7 @@ function AddStudent(props) {
           console.log(Students);
           try {
             await AsyncStorage.setItem('students', JSON.stringify(Students));
+            props.navigation.navigate('StudentList');
           } catch (e) {
             console.log(e);
           }

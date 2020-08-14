@@ -9,15 +9,18 @@ import StudentList from '../Dashboard/StudentList';
 
 const Stack = createStackNavigator();
 
-export default function MyStack() {
+const MyStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
-        <Stack.Screen name="Register" component={Register} />
+      <Stack.Navigator initialRouteName="Login" headerMode="none">
         <Stack.Screen name="Login" component={Login} />
+
+        <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="AddStudent" component={AddStudent} />
         <Stack.Screen name="StudentList" component={StudentList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default MyStack;
